@@ -113,7 +113,7 @@ function safeReplace()
 
 	if ! [ -a "$DESIRED_PATH" ]; then
 		mv "$1" "$TRASH"
-		cp "$2" "$1"
+		cp -a "$2" "$1"
 		return
 	elif [ -f "$DESIRED_PATH" ]; then
 		isFile=true
@@ -149,7 +149,7 @@ function safeReplace()
 		exit
 	else
 		mv "$1" "$TEST_PATH"
-		cp "$2" "$1"
+		cp -a "$2" "$1"
 	fi
 }
 
@@ -278,7 +278,7 @@ for FILE1 in `find $FOLDER1 -type f -name "*.${desired_suffix}" -a ! -name ".DS_
 		if [ "$a" == "y" ]; then
 			echo "Copying file…"
 			 echo "Copying $FILE1 to $FOLDER2." >> $LOG
-			 mkdir -p $(dirname $FILE2) && cp $FILE1 $FILE2
+			 mkdir -p $(dirname $FILE2) && cp -a $FILE1 $FILE2
 			 let num_unique_1_copied+=1
 		 fi
 	# If there is such a file in FOLDER2 and we are not ignoring matching files...
@@ -515,7 +515,7 @@ for FILE2 in `find $FOLDER2 -type f -name "*.${desired_suffix}" -a ! -name ".DS_
 		if [ "$a" == "y" ]; then
 			echo "Copying file…"
 			echo "Copying $FILE2 to $FOLDER1." >> $LOG
-			mkdir -p $(dirname $FILE1) && cp $FILE2 $FILE1
+			mkdir -p $(dirname $FILE1) && cp -a $FILE2 $FILE1
 			let num_unique_2_copied+=1
 		fi
 	# And that's it! We don't have to do anything if FILE1 does exist because we already took care of matching files from the side of the FOLDER1 'for' loop
