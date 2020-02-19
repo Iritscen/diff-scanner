@@ -64,7 +64,7 @@ if [ ! -d "$TRASH" ]; then
 	echo "DiffScanner: Could not create folder in Trash for replaced files. Exiting..."
 	exit
 fi
-LOG=$TRASH/DiffScanner\ log.txt
+LOG="$TRASH/DiffScanner log.txt"
 echo "DiffScanner "$VERSION" initializing..." >> $LOG
 # Declare file variables here so they are globals that can be accessed by bashtrap() upon force-quit
 FILE1=""
